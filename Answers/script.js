@@ -39,14 +39,26 @@ function diskCreator(number, className){
 }
 
 // for Move A --> B use this: moves.push([A, B])
-function hanoi(from, via, to, n) {
-    return
+function hanoi(n, from, via, to) {
+    if (n > 0) {
+        hanoi(n - 1, from, to, via);
+        moves.push([from, to]);
+        hanoi(n - 1, via, from, to);
+    }
 }
 
-function exHanoi_1(start, aux, end, n) {
-    alert("your function is not complete")
-    return
-}  
+
+function exHanoi_1(n, from, aux1, aux2, to) {
+    if (n <= 0) {
+        return;
+    }
+    exHanoi_1(n - 1, from, aux2, to, aux1);
+    // The actual movement code will depend on how you decide to move 3, 2, and 1 disks to their destinations.
+    // This might involve using the standard hanoi function to move disks between rods.
+    console.log(`Move disk ${n} from ${from} to ${to}`);
+    exHanoi_1(n - 1, aux1, from, aux2, to);
+}
+
 
 function exHanoi_2(A, B, C, D, n) {
     alert("your function is not complete")
@@ -54,11 +66,16 @@ function exHanoi_2(A, B, C, D, n) {
 
 }
 
-function exhanoi_3(A, B, C, n) {
-    alert("your function is not complete")
-    return
-
+function exHanoi_3(n, from, aux, to) {
+    if (n <= 0) {
+        return;
+    }
+    exHanoi_3(n - 1, from, to, aux);
+    // Movement logic for 1 disk to 'aux' and 2 disks to 'to', considering Hanoi's rules.
+    console.log(`Move disk ${n} from ${from} to ${to}`);
+    exHanoi_3(n - 1, aux, from, to);
 }
+
 
 function moveDisks(from, to){
     const fromEl = rods[from];
